@@ -1,6 +1,11 @@
 # tech_support
 CS350-Project
 
+## Colaborators
+Camila Fernandez
+Gabriela Hernandez
+Juliana Spitzner
+
 ## Git commands
 
 - git checkout dev (move to branch dev)
