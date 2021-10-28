@@ -4,11 +4,12 @@
 	mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 	
 	try{
-		if (empty($_POST['code']) or empty($_POST['name']) or empty($_POST['version']) or empty($_POST['release'])) throw new Exception("form fields not filled in");
-		$code = $_POST['code'];
-		$name = $_POST['name'];
-		$version = $_POST['version'];
-		$release = $_POST['release'];
+		if (empty($_POST['name']) or empty($_POST['lastName']) or empty($_POST['email']) or empty($_POST['phone']) or empty($_POST['password'])) throw new Exception("form fields not filled in");
+        $name = $_POST['name'];
+		$lastName = $_POST['lastName'];
+		$email = $_POST['email'];
+		$phone = $_POST['phone'];
+        $password = $_POST['password'];
 
 		$con = mysqli_connect("webdev.bentley.edu", "fernandcami", "2303", "fernandcami");
 
@@ -16,9 +17,9 @@
             echo "Failed to connect to MySQL: " . mysqli_connect_error() . "<br>";
             exit("Connect Error");
         }
-
-        $query = "INSERT INTO PRODUCTS VALUES ('$code', '$name', $version, '$release')";
-
+        
+        $query = "INSERT INTO TECHNICIANS (firstName, lastName, email, phone, password) VALUES ('$name', '$lastName', '$email', '$phone', '$password')";
+        
     	if (mysqli_query($con, $query)) {
           #echo "Record added successfully";
           header('Location: index.php');
@@ -26,6 +27,7 @@
         else {
           echo "Error adding record: " . mysqli_error($con);
         }
+        
 
 	} catch (Exception $e) {
 		// not sure this is enough
