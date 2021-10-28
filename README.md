@@ -2,9 +2,9 @@
 CS350-Project
 
 ## Colaborators
-Camila Fernandez
-Gabriela Hernandez
-Juliana Spitzner
+- Camila Fernandez
+- Gabriela Hernandez
+- Juliana Spitzner
 
 ## Git commands
 
