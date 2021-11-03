@@ -6,6 +6,9 @@ CS350-Project
 - Gabriela Hernandez
 - Juliana Spitzner
 
+## To Change DB connection
+model -> database.php
+
 ## Git commands
 
 - git checkout dev (move to branch dev)
