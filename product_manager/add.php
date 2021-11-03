@@ -10,7 +10,8 @@
 		$version = $_POST['version'];
 		$release = $_POST['release'];
 
-		$con = mysqli_connect("webdev.bentley.edu", "fernandcami", "2303", "fernandcami");
+		#Connect to db
+		require('../model/database.php');
 
 		if (mysqli_connect_error($con)) {
             echo "Failed to connect to MySQL: " . mysqli_connect_error() . "<br>";
@@ -28,10 +29,9 @@
         }
 
 	} catch (Exception $e) {
-		// not sure this is enough
-		$message = $e->getMessage();
-	    $code = $e->getCode();
-	    header("Location: error.php?code=$code&message=$message");
+		header("Refresh:5; url=addProduct.php");
+		echo "Error: " . $e->getMessage() . "<br>Line " . $e->getLine();
+		echo "<br> You will be redirected in 5 seconds...";
 	} finally {
 		// close connection
     	mysqli_close($con);

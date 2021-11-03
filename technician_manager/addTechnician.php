@@ -40,7 +40,6 @@
 	</form>
 
 	</table>
-
     <br>
 	<a href="index.php">View Technician List</a>
 

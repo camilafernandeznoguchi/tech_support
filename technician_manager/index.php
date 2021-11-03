@@ -6,10 +6,12 @@
 
     <table>
 	<?php
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    error_reporting(0);
 
     try {
         # Conect to database
-        $con = mysqli_connect("webdev.bentley.edu", "fernandcami", "2303", "fernandcami");
+        require('../model/database.php');
 
         # Check connection
         if (mysqli_connect_error($con)) {
