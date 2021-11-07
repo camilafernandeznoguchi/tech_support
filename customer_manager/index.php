@@ -25,6 +25,7 @@ function test_input($data) {
         } else {
             $comment = test_input($_POST["lastname"]);
             $search = "true";
+            
         }
     }
            ?>
@@ -52,17 +53,9 @@ function test_input($data) {
         # Perform SQL query
         echo $name;
         echo $search;
-        while ($search = 'false') {
-        if ($search = 'false')
-        {
         $query = "SELECT customerID, firstName, lastName, email, city FROM customers;";
         $result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
-        }
-        else {
-            $query = "SELECT customerID, firstName, lastName, email, city FROM customers WHERE lastName = '$comment';";
-            $result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
-        }
-    }
+
 
         # field result set
         $finfo = mysqli_fetch_fields($result);
