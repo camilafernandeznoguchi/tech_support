@@ -61,6 +61,7 @@
             $first = True;
             # inner loop. Print each field value for a record
             foreach ($line as $field_value) {
+                echo $field_value;
                 if(!$first){
                     echo "<td>", "$field_value", "</td>";
                 } else $first = False;
