@@ -1,16 +1,39 @@
-<?php require('../view/header.php');?>
+<?php require('../view/header.php');
+
+$name = $email = $gender = $comment = $comment = "";
+$search = 'false';
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+?>
 
 <main>
     <!--Produced by: Juliana Spitnzer-->
     <h1>Customer Search</h1>
 
-    <h1>Results</h1>
-
     <tr><td class="rt">Last Name:</td>
-         <td><form name="form" action="" method="get"><input type="text" name="lastname" id="lastname"> 
-         </form></tr>
-          <?php $input = "Smith"; ?>
 
+    <?php 
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+        if (empty($_POST["lastname"])) {
+            $comment = "";
+        } else {
+            $comment = test_input($_POST["lastname"]);
+            $search = "true";
+        }
+    }
+           ?>
+
+         <td><form name="form" action="" method="post"><input type="text" name="lastname" id="lastname"> 
+         
+         </form></tr>
+          
+    <h1>Results</h1>
     <table>
 	<?php
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
@@ -27,8 +50,19 @@
         }
 
         # Perform SQL query
-        $query = "SELECT customerID, firstName, lastName, email, city FROM customers WHERE lastName = '$input';";
+        echo $name;
+        echo $search;
+        while ($search = 'false') {
+        if ($search = 'false')
+        {
+        $query = "SELECT customerID, firstName, lastName, email, city FROM customers;";
         $result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
+        }
+        else {
+            $query = "SELECT customerID, firstName, lastName, email, city FROM customers WHERE lastName = '$comment';";
+            $result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
+        }
+    }
 
         # field result set
         $finfo = mysqli_fetch_fields($result);
@@ -61,7 +95,6 @@
             $first = True;
             # inner loop. Print each field value for a record
             foreach ($line as $field_value) {
-                echo $field_value;
                 if(!$first){
                     echo "<td>", "$field_value", "</td>";
                 } else $first = False;

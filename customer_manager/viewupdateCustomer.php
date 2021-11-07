@@ -10,7 +10,13 @@ try {
 		exit("Connect Error");
 	}
 
-$input = "priscilla";
+
+ $text=$_POST['text'];
+ echo $text;
+ echo $input;
+
+
+
 $query = "SELECT * FROM customers WHERE firstName = '$input';";
     $result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
 
