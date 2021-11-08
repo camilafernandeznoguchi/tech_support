@@ -21,10 +21,6 @@ function test_input($data) {
     <?php 
     echo "<h1>" . "Customer Search" . "</h1>";
 
-    echo "<tr>";
-    echo "<td class='rt'>" . "Last Name:" . "</td>";
-
-
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     error_reporting(0);
 
@@ -39,10 +35,12 @@ function test_input($data) {
         }
 
 
-
+        echo "<tr>";
             echo "<td>";
-            echo "<form name='form' action='' method='post'>";
-            echo"<input type='text' name='lastname' id='lastname'>";
+            echo "<form name='form' action='index.php' method='post'>";
+            echo "<label for='lastname'>" . "Last Name: ". "</label>";
+            echo "<input type='text' name='lastname' id='lastname'>";
+            echo "<td> <button type='submit' name='searchCustomer'>Search</button></td>";
             
            echo "</form></tr>";
              
@@ -56,6 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["lastname"])) {
         $comment = "";
         $_SESSION["yeah"] = $comment;
+        $query = "SELECT customerID, firstName, lastName, email, city FROM customers;";
+        $result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
       
     } else {
         $comment = test_input($_POST["lastname"]);
@@ -125,9 +125,6 @@ else {
 
 	?>
 	</table>
-    <a href="viewupdateCustomer.php">View/Update Cusomter</a>
-
-
 
 </main>
 
