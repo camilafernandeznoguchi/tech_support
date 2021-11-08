@@ -3,7 +3,7 @@ session_start();
 require('../view/header.php');
 
 $var = $_SESSION["yeah"];
-echo $var;
+//echo $var;
 
 try {
 	# Conect to database
@@ -14,8 +14,6 @@ try {
 		echo "Failed to connect to MySQL: " . mysqli_connect_error() . "<br>";
 		exit("Connect Error");
 	}
-
-	echo 'HEY';
 	$id = $_SESSION["iddd"];
 	//$id = "SELECT customerID FROM customers WHERE lastName = '$var';";
 
@@ -29,15 +27,15 @@ try {
 	# loop over result set. Print field values for each record
 	while ($line = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 
-		print_r($line);
-		echo $line["firstName"];
+		//print_r($line);
+		//echo $line["firstName"];
 		$first_name = $line["firstName"];
 		$last_name = $line["lastName"];
 		$address = $line["address"];
 		$city = $line["city"];
 		$state = $line["state"];
-		$postalcode = $line["postalcode"];
-		$countrycode = $line["countrycode"];
+		$postalcode = $line["postalCode"];
+		$countrycode = $line["countryCode"];
 		$phone = $line["phone"];
 		$email = $line["email"];
 		$password = $line["password"];
@@ -48,7 +46,7 @@ try {
 		# inner loop. Print each field value for a record
 		foreach ($line as $field_value) {
 			if(!$first){
-				echo "<td>", "$field_value", "</td>";
+				//echo "<td>", "$field_value", "</td>";
 			} else $first = False;
 		}
 		echo "</tr>";
