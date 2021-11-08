@@ -2,6 +2,13 @@
 session_start();
 require('../view/header.php');
 
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 $var = $_SESSION["yeah"];
 //echo $var;
 
@@ -66,52 +73,54 @@ echo "<table>";
 echo "<form action='add.php' method='post'>";
 	echo "<tr>";
 		echo "<td>" . "<label for='name'>" . "First Name:" . "</label>" ."</td>";
-		echo "<td>" . "<input type='text' id='name' name='name' placeholder= $first_name>" . "</td>";
+		echo "<td>" . "<input type='text' id='name' name='name' value= $first_name>" . "</td>";
 	echo "</tr>";
+
 
 	echo "<tr>";
 		echo "<td>" . "<label for='lastName'>" . "Last Name:" . "</label>" ."</td>";
-		echo "<td>" . "<input type='text' id='lastName' name='lastName' placeholder= $last_name>" . "</td>";
+		echo "<td>" . "<input type='text' id='lastName' name='lastName' value= $last_name>" . "</td>";
 	echo "</tr>";
 
 	echo "<tr>";
 		echo "<td>" . "<label for='address'>" . "Address:" . "</label>" ."</td>";
-		echo "<td>" . "<input type='text' id='address' name='address' placeholder= $address>" . "</td>";
+		echo "<td>" . "<input type='text' id='address' name='address' value= $address>" . "</td>";
 	echo "</tr>";
 
+	
 	echo "<tr>";
 		echo "<td>" . "<label for='city'>" . "City:" . "</label>" ."</td>";
-		echo "<td>" . "<input type='text' id='city' name='city' placeholder= $city>" . "</td>";
+		echo "<td>" . "<input type='text' id='city' name='city' value= $city>" . "</td>";
 	echo "</tr>";
 
 	echo "<tr>";
 		echo "<td>" . "<label for='state'>" . "State:" . "</label>" ."</td>";
-		echo "<td>" . "<input type='text' id='state' name='state' placeholder= $state>" . "</td>";
+		echo "<td>" . "<input type='text' id='state' name='state' value= $state>" . "</td>";
 	echo "</tr>";
 
 	echo "<tr>";
 		echo "<td>" . "<label for='postalcode'>" . "Postal Code:" . "</label>" ."</td>";
-		echo "<td>" . "<input type='text' id='postalcode' name='postalcode' placeholder= $postalcode>" . "</td>";
+		echo "<td>" . "<input type='text' id='postalcode' name='postalcode' value= $postalcode>" . "</td>";
 	echo "</tr>";
 
 	echo "<tr>";
 		echo "<td>" . "<label for='countrycode'>" . "Country Code:" . "</label>" ."</td>";
-		echo "<td>" . "<input type='text' id='countrycode' name='countrycode' placeholder= $countrycode>" . "</td>";
+		echo "<td>" . "<input type='text' id='countrycode' name='countrycode' value= $countrycode>" . "</td>";
 	echo "</tr>";
 
 	echo "<tr>";
 		echo "<td>" . "<label for='phone'>" . "Phone:" . "</label>" ."</td>";
-		echo "<td>" . "<input type='text' id='phone' name='phone' placeholder= $phone>" . "</td>";
+		echo "<td>" . "<input type='text' id='phone' name='phone' value= $phone>" . "</td>";
 	echo "</tr>";
 
 	echo "<tr>";
 		echo "<td>" . "<label for='email'>" . "Email:" . "</label>" ."</td>";
-		echo "<td>" . "<input type='text' id='email' name='email' placeholder= $email>" . "</td>";
+		echo "<td>" . "<input type='text' id='email' name='email' value= $email>" . "</td>";
 	echo "</tr>";
 
 	echo "<tr>";
 		echo "<td>" . "<label for='password'>" . "Password:" . "</label>" ."</td>";
-		echo "<td>" . "<input type='text' id='password' name='password' placeholder= $password>" . "</td>";
+		echo "<td>" . "<input type='text' id='password' name='password' value= $password>" . "</td>";
 	echo "</tr>";
 
 ?>
@@ -127,7 +136,26 @@ echo "<form action='add.php' method='post'>";
 
 	<tr>
 		<td></td>
-		<td><input type='submit' value='Update Customer' name='AddTechnician'/></td>
+		<td><input type='submit' value='Update Customer' name='updateCustomer'/></td>
+
+	<?php 		
+
+	test_input($_POST["password"]);
+
+	if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+			if (empty($_POST["address"])) {
+				echo $_POST["address"];
+			echo "hi";}
+			else {
+				echo $_POST["address"];
+				$updated_first = test_input($_POST["address"]);
+				echo $updated_first;
+			}
+		}
+
+		
+	?>
+
 	</tr>
 	</form>
 
