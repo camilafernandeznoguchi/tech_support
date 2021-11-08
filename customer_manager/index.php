@@ -1,6 +1,11 @@
-<?php require('../view/header.php');
+<?php 
+session_start();
+
+require('../view/header.php');
+
 
 $name = $email = $gender = $comment = $comment = "";
+global $comment;
 $search = 'false';
 
 function test_input($data) {
@@ -13,30 +18,13 @@ function test_input($data) {
 
 <main>
     <!--Produced by: Juliana Spitnzer-->
-    <h1>Customer Search</h1>
-
-    <tr><td class="rt">Last Name:</td>
-
     <?php 
+    echo "<h1>" . "Customer Search" . "</h1>";
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") { 
-        if (empty($_POST["lastname"])) {
-            $comment = "";
-        } else {
-            $comment = test_input($_POST["lastname"]);
-            $search = "true";
-            
-        }
-    }
-           ?>
+    echo "<tr>";
+    echo "<td class='rt'>" . "Last Name:" . "</td>";
 
-         <td><form name="form" action="" method="post"><input type="text" name="lastname" id="lastname"> 
-         
-         </form></tr>
-          
-    <h1>Results</h1>
-    <table>
-	<?php
+
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     error_reporting(0);
 
@@ -50,12 +38,36 @@ function test_input($data) {
             exit("Connect Error");
         }
 
-        # Perform SQL query
-        echo $name;
-        echo $search;
-        $query = "SELECT customerID, firstName, lastName, email, city FROM customers;";
-        $result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
 
+
+            echo "<td>";
+            echo "<form name='form' action='' method='post'>";
+            echo"<input type='text' name='lastname' id='lastname'>";
+            
+           echo "</form></tr>";
+             
+       echo "<h1>" . "Results" . "</h1>";
+       echo "<table>";
+
+        # Perform SQL query
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+    if (empty($_POST["lastname"])) {
+        $comment = "";
+        $_SESSION["yeah"] = $comment;
+      
+    } else {
+        $comment = test_input($_POST["lastname"]);
+        $_SESSION["yeah"] = $comment;
+        $search = "true";
+        $query = "SELECT customerID, firstName, lastName, email, city FROM customers WHERE lastName = '$comment'; ";
+        $result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
+    }}
+else {
+    $query = "SELECT customerID, firstName, lastName, email, city FROM customers;";
+        $result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
+}
 
         # field result set
         $finfo = mysqli_fetch_fields($result);
@@ -90,11 +102,14 @@ function test_input($data) {
             foreach ($line as $field_value) {
                 if(!$first){
                     echo "<td>", "$field_value", "</td>";
-                } else $first = False;
+                } else {
+                    $first = False;
+                    $_SESSION["iddd"] = $field_value;
+                }
             }
 
             #select buttons
-            echo "<form action='select.php' method='post'>";
+            echo "<form action='viewupdateCustomer.php' method='post'>";
             echo "<td> <button type='submit' name='selectItem' value='" . $line['customerID'] . "' />Select</button></td>";
             echo "</form>";
 

@@ -1,4 +1,9 @@
-<?php require('../view/header.php');
+<?php 
+session_start();
+require('../view/header.php');
+
+$var = $_SESSION["yeah"];
+echo $var;
 
 try {
 	# Conect to database
@@ -10,14 +15,12 @@ try {
 		exit("Connect Error");
 	}
 
+	echo 'HEY';
+	$id = $_SESSION["iddd"];
+	//$id = "SELECT customerID FROM customers WHERE lastName = '$var';";
 
- $text=$_POST['text'];
- echo $text;
- echo $input;
-
-
-
-$query = "SELECT * FROM customers WHERE firstName = '$input';";
+	//$query = "SELECT * FROM customers WHERE lastName = '$var';";
+	$query = "SELECT * FROM customers WHERE customerID = '$id';";
     $result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
 
 	# field result set
