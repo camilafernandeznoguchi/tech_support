@@ -100,9 +100,6 @@ $_SESSION["customer_id"] = $customer_ID;
 			<tr><td>
 			Postal Code:  </td><td><input type="text" name="postal" value=<?php echo "'$postalcode'"?>><br>
 			</td></tr>
-			<tr><td>
-			Country Code:  </td><td><input type="text" name="country" value=<?php echo "'$countrycode'"?>><br>
-			</td></tr>
 			<?php $code = $full[$countrycode]; ?>
 			<tr><td>
 			Country Code:  </td><td>

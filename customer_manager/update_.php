@@ -3,7 +3,7 @@
 <?php
 session_start();
 
-//header('Location: index.php');
+header('Location: index.php');
 
 
 //assign updated values
@@ -16,12 +16,12 @@ $newCity = $_POST["city"];
 $newState = $_POST["state"];
 $newPostal = $_POST["postal"];
 //$newCountry = $_POST["country"];
-echo $newCountry;
+//echo $newCountry;
 $code = $_POST["browser"];
 // echo $newCode . "HERE";
 $array =$_SESSION["array"];
 $newCode = array_search($code, $array);
-echo $newCode;
+//echo $newCode;
 $newPhone = $_POST["phone"];
 $newEmail = $_POST["email"];
 $newPassword = $_POST["password"];
