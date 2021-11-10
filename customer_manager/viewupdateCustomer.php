@@ -26,6 +26,20 @@ try {
 	$query = "SELECT * FROM customers WHERE customerID = '$id';";
     $result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
 
+	$queryCountry = "SELECT * FROM countries;";
+	$resultCountry = mysqli_query($con, $queryCountry) or die('Query failed: ' . mysqli_errno($con));
+
+	$arrayCountries = array();
+	$count = 3;
+	while ($lineCountry = mysqli_fetch_array($resultCountry, MYSQLI_ASSOC)) {
+		foreach ($lineCountry as $field_valueCountry) {
+			if ($count % 2 == 0){
+				array_push($arrayCountries, $field_valueCountry);
+			}
+			$count += 1;
+		}
+	}
+
 	# field result set
 	$finfo = mysqli_fetch_fields($result);
 
@@ -90,7 +104,28 @@ $_SESSION["customer_id"] = $customer_ID;
 			Password:  </td><td><input type="text" name="password" value=<?php echo "'$password'"?>><br>
 			</td></tr>
 			<td> </td><td><input type="submit" value="Update Customer"></td>
+
+			<tr><td>
+			Country Code:  </td><td>
+			<input list="browsers" name="browser" id="browser">
+			<datalist id="browsers">
+				<?php foreach ($arrayCountries as $country) {
+					echo "<option value='" . $country . "'>";
+					echo $country;
+				}
+				?>
+				<option value="Edge">
+				<option value="Firefox">
+				<option value="Chrome">
+				<option value="Opera">
+				<option value="Safari">
+			</datalist>
+			</td></tr>
 		</form>
+
+
+			
+
 	</table>
 
 	<style>
