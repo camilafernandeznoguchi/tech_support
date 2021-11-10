@@ -3,6 +3,9 @@
 <?php
 session_start();
 
+header('Location: index.php');
+
+
 //assign updated values
 $id = $_SESSION["customer_id"];
 echo $id;
