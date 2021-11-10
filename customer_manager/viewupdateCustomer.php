@@ -31,14 +31,23 @@ try {
 
 	$arrayCountries = array();
 	$count = 3;
+	$full = array();
 	while ($lineCountry = mysqli_fetch_array($resultCountry, MYSQLI_ASSOC)) {
 		foreach ($lineCountry as $field_valueCountry) {
-			if ($count % 2 == 0){
+			if ($count % 2 != 0){
+				$value = $field_valueCountry;
+			}
+			else{
 				array_push($arrayCountries, $field_valueCountry);
+				$full[$value] = $field_valueCountry;
 			}
 			$count += 1;
 		}
 	}
+
+	$_SESSION["array"] = $full;
+
+	//print_r($full);
 
 	# field result set
 	$finfo = mysqli_fetch_fields($result);
@@ -94,6 +103,16 @@ $_SESSION["customer_id"] = $customer_ID;
 			<tr><td>
 			Country Code:  </td><td><input type="text" name="country" value=<?php echo "'$countrycode'"?>><br>
 			</td></tr>
+			<?php $code = $full[$countrycode]; ?>
+			<tr><td>
+			Country Code:  </td><td>
+			<input list="browsers" name="browser" id="browser" value=<?php echo "'$code'"?>>
+			<datalist id="browsers">
+			<?php foreach ($arrayCountries as $country) {
+					echo "<option value='" . $country . "'>";
+					echo $country;
+				} ?>
+			</datalist></td></tr>
 			<tr><td>
 			Phone:  </td><td><input type="text" name="phone" value=<?php echo "'$phone'"?>><br>
 			</td></tr>
@@ -105,26 +124,8 @@ $_SESSION["customer_id"] = $customer_ID;
 			</td></tr>
 			<td> </td><td><input type="submit" value="Update Customer"></td>
 
-			<tr><td>
-			Country Code:  </td><td>
-			<input list="browsers" name="browser" id="browser">
-			<datalist id="browsers">
-				<?php foreach ($arrayCountries as $country) {
-					echo "<option value='" . $country . "'>";
-					echo $country;
-				}
-				?>
-				<option value="Edge">
-				<option value="Firefox">
-				<option value="Chrome">
-				<option value="Opera">
-				<option value="Safari">
-			</datalist>
-			</td></tr>
+	
 		</form>
-
-
-			
 
 	</table>
 
@@ -143,9 +144,13 @@ $_SESSION["customer_id"] = $customer_ID;
 </main>
 
 
-<form method="post" action="update_.php">
+<!-- <form method="post" action="update_.php">
 <input type="hidden" name="customer_id" 
  value="<?php echo $customer_ID; ?>">
+	</form> -->
+<form method="post" action="update_.php">
+<input type="hidden" name="array" 
+ value="<?php echo $full; ?>">
 	</form>
 
 <?php include('../view/footer.php');?>

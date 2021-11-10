@@ -3,20 +3,25 @@
 <?php
 session_start();
 
-header('Location: index.php');
+//header('Location: index.php');
 
 
 //assign updated values
 $id = $_SESSION["customer_id"];
-echo $id;
+// echo $id;
 $newName = $_POST["first"];
 $newLast = $_POST["last"];
-$newAddress = $_POST["first"];
+$newAddress = $_POST["address"];
 $newCity = $_POST["city"];
 $newState = $_POST["state"];
 $newPostal = $_POST["postal"];
-$newCountry = $_POST["country"];
+//$newCountry = $_POST["country"];
 echo $newCountry;
+$code = $_POST["browser"];
+// echo $newCode . "HERE";
+$array =$_SESSION["array"];
+$newCode = array_search($code, $array);
+echo $newCode;
 $newPhone = $_POST["phone"];
 $newEmail = $_POST["email"];
 $newPassword = $_POST["password"];
@@ -53,7 +58,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 		$query5 = "UPDATE customers SET postalCode='$newPostal' where customerID='$id'";
 		$result5 = mysqli_query($con, $query5) or die('Query failed: ' . mysqli_errno($con));
 		//update country code
-		$query6 = "UPDATE customers SET countryCode='$newCountry' where customerID='$id'";
+		$query6 = "UPDATE customers SET countryCode='$newCode' where customerID='$id'";
 		$result6 = mysqli_query($con, $query6) or die('Query failed: ' . mysqli_errno($con));
 		//update phone
 		$query7 = "UPDATE customers SET phone='$newPhone' where customerID='$id'";
