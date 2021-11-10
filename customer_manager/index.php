@@ -104,7 +104,7 @@ else {
                     echo "<td>", "$field_value", "</td>";
                 } else {
                     $first = False;
-                    $_SESSION["iddd"] = $field_value;
+                    $_SESSION["customerID"] = $field_value;
                 }
             }
 
