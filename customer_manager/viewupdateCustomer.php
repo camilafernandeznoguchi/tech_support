@@ -57,44 +57,48 @@ $_SESSION["customer_id"] = $customer_ID;
 <main>
 	<h1>View/Update Customer</h1>
 	<table>
+	<col style="width:25%">
 		<tr><td>
 		<form action="update_.php" method="post">
-			First Name: <input type="text" name="first" value=<?php echo "'$first_name'"?>><br>
+			First Name:  </td><td><input type="text" name="first" value=<?php echo "'$first_name'"?>><br>
 			</td></tr>
 			<tr><td>
-			Last Name: <input type="text" name="last" value=<?php echo "'$last_name'"?>><br>
+			Last Name: </td><td><input type="text" name="last" value=<?php echo "'$last_name'"?>><br>
 			</td></tr>
 			<tr><td>
-			Address: <input type="text" name="address" value=<?php echo "'$address'"?>><br>
+			Address:  </td><td><input size="50" type="text" name="address" value=<?php echo "'$address'"?>><br>
 			</td></tr>
 			<tr><td>
-			City: <input type="text" name="city" value=<?php echo "'$city'"?>><br>
+			City:  </td><td><input type="text" name="city" value=<?php echo "'$city'"?>><br>
 			</td></tr>
 			<tr><td>
-			State: <input type="text" name="state" value=<?php echo "'$state'"?>><br>
+			State:  </td><td><input type="text" name="state" value=<?php echo "'$state'"?>><br>
 			</td></tr>
 			<tr><td>
-			Postal Code: <input type="text" name="postal" value=<?php echo "'$postalcode'"?>><br>
+			Postal Code:  </td><td><input type="text" name="postal" value=<?php echo "'$postalcode'"?>><br>
 			</td></tr>
 			<tr><td>
-			Country Code: <input type="text" name="country" value=<?php echo "'$countrycode'"?>><br>
+			Country Code:  </td><td><input type="text" name="country" value=<?php echo "'$countrycode'"?>><br>
 			</td></tr>
 			<tr><td>
-			Phone: <input type="text" name="phone" value=<?php echo "'$phone'"?>><br>
+			Phone:  </td><td><input type="text" name="phone" value=<?php echo "'$phone'"?>><br>
 			</td></tr>
 			<tr><td>
-			Email: <input type="text" name="email" value=<?php echo "'$email'"?>><br>
+			Email:  </td><td><input size="50" type="text" name="email" value=<?php echo "'$email'"?>><br>
 			</td></tr>
 			<tr><td>
-			Password: <input type="text" name="password" value=<?php echo "'$password'"?>><br>
+			Password:  </td><td><input type="text" name="password" value=<?php echo "'$password'"?>><br>
 			</td></tr>
-			<td><input type="submit" value="Update Customer"></td>
+			<td> </td><td><input type="submit" value="Update Customer"></td>
 		</form>
 	</table>
 
 	<style>
 		table, tr, td {
 			border: none;
+		}
+		td.address {
+			width: 500px;
 		}
 	</style>
 
