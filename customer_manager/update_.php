@@ -35,34 +35,34 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         }
 
 		//update first name
-		$query = "UPDATE customers SET firstName='$newName' where customerID='1118'";
+		$query = "UPDATE customers SET firstName='$newName' where customerID='$id'";
 		$result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
 		//update last name
-		$query1 = "UPDATE customers SET lastName='$newLast' where customerID='1118'";
+		$query1 = "UPDATE customers SET lastName='$newLast' where customerID='$id'";
 		$result1 = mysqli_query($con, $query1) or die('Query failed: ' . mysqli_errno($con));
 		//update address
-		$query2 = "UPDATE customers SET address='$newAddress' where customerID='1118'";
+		$query2 = "UPDATE customers SET address='$newAddress' where customerID='$id'";
 		$result2 = mysqli_query($con, $query2) or die('Query failed: ' . mysqli_errno($con));
 		//update city
-		$query3 = "UPDATE customers SET city='$newCity' where customerID='1118'";
+		$query3 = "UPDATE customers SET city='$newCity' where customerID='$id'";
 		$result3 = mysqli_query($con, $query3) or die('Query failed: ' . mysqli_errno($con));
 		//update state
-		$query4 = "UPDATE customers SET state='$newState' where customerID='1118'";
+		$query4 = "UPDATE customers SET state='$newState' where customerID='$id'";
 		$result4 = mysqli_query($con, $query4) or die('Query failed: ' . mysqli_errno($con));
 		//update postal code
-		$query5 = "UPDATE customers SET postalCode='$newPostal' where customerID='1118'";
+		$query5 = "UPDATE customers SET postalCode='$newPostal' where customerID='$id'";
 		$result5 = mysqli_query($con, $query5) or die('Query failed: ' . mysqli_errno($con));
 		//update country code
-		$query6 = "UPDATE customers SET countryCode='$newCountry' where customerID='1118'";
+		$query6 = "UPDATE customers SET countryCode='$newCountry' where customerID='$id'";
 		$result6 = mysqli_query($con, $query6) or die('Query failed: ' . mysqli_errno($con));
 		//update phone
-		$query7 = "UPDATE customers SET phone='$newPhone' where customerID='1118'";
+		$query7 = "UPDATE customers SET phone='$newPhone' where customerID='$id'";
 		$result7 = mysqli_query($con, $query7) or die('Query failed: ' . mysqli_errno($con));
 		//update email
-		$query8 = "UPDATE customers SET email='$newEmail' where customerID='1118'";
+		$query8 = "UPDATE customers SET email='$newEmail' where customerID='$id'";
 		$result8 = mysqli_query($con, $query8) or die('Query failed: ' . mysqli_errno($con));
 		//update password
-		$query9 = "UPDATE customers SET password='$newPassword' where customerID='1118'";
+		$query9 = "UPDATE customers SET password='$newPassword' where customerID='$id'";
 		$result9 = mysqli_query($con, $query9) or die('Query failed: ' . mysqli_errno($con));
 
 	}
