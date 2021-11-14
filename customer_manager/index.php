@@ -67,10 +67,10 @@ function test_input($data) {
             $result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
         }
 
-        # field result set
+        # field result set 
         $finfo = mysqli_fetch_fields($result);
         
-        # loop through field names and print as headers
+        # loop through field names and print as headers 
         echo "<tr>";
         $first = True;
         foreach ($finfo as $val) {

@@ -19,7 +19,7 @@
 
     <h2>Customers</h2>
     <ul>
-        <li><a href="under_construction.php">Register Product</a></li>
+        <li><a href="product_register">Register Product</a></li>
     </ul>
     
     </nav>
