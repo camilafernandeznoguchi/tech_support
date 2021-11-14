@@ -104,7 +104,7 @@ $_SESSION["customer_id"] = $customer_ID;
 			<tr><td>
 			Country Code:  </td><td>
 			<?php
-			echo "<select name='productslist[]'>";
+			echo "<select name='browser'>";
 			foreach ($arrayCountries as $country) {
 				echo "<option value='$country'>";
 				echo $country;

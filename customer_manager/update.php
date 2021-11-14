@@ -30,8 +30,7 @@ session_start();
             exit("Connect Error");
         }
         
-        //$query = "INSERT INTO TECHNICIANS (firstName, lastName, email, phone, password) VALUES ('$name', '$lastName', '$email', '$phone', '$password')";
-        
+        #$query = "UPDATE customers SET firstName='$newName', lastName='$newLast', address='$newAddress', city='$newCity', state='$newState', postalCode='$newPostal', countryCode='$newCode', phone='$newPhone', email='$newEmail', password='$newPassword' WHERE customerID='$customer_ID'";
 		$query = "UPDATE customers SET city='$city' where customerID='$customer_ID'";
 
     	if (mysqli_query($con, $query)) {
