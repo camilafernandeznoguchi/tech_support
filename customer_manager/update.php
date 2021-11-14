@@ -1,5 +1,5 @@
 <?php
-
+//Produced by: Juliana Spitzner
 session_start();
 	
 	error_reporting(0);

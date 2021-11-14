@@ -32,9 +32,17 @@ try {
     $result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
     $line = mysqli_fetch_array($result, MYSQLI_ASSOC);
     
-    # attempt 2
+    $customerID = $_SESSION['customerID'];
     $prod_code = array_values($line)[0];
-   // debugging: echo "HI!"."$prod_code";
+    $date = date("Y-m-d h:i:s");
+    echo $date;
+   	$register_query = "INSERT INTO registrations VALUES ('$customerID', '$prod_code', '$date')";
+   	if (mysqli_query($con, $register_query)) {
+      #echo "Record added successfully";
+    }
+    else {
+      echo "Error adding record: " . mysqli_error($con);
+    }
 	
 }
 catch (Exception $e) {

@@ -3,7 +3,7 @@
 <?php require('../view/header.php');?>
 
 <?php
-
+session_start();
 // get values sent from browser and test that both are filled in.
 // If not, redirect to error.php
 if (! empty($_POST['name']) ) {
@@ -42,6 +42,15 @@ if (! empty($_POST['name']) ) {
             
         if ($rows2 < 1)
             header("Location: error.php?message='user not found'");
+
+        //Get customerID for registering
+        $customerID_query = "SELECT customerID FROM customers WHERE email='$name'";
+        $customerID_result = mysqli_query($con, $customerID_query) or die('Query failed: ' . mysqli_errno($con));
+        while ($line = mysqli_fetch_array($customerID_result, MYSQLI_ASSOC)) {
+            foreach ($line as $field_value) {
+                $_SESSION['customerID'] = $field_value;
+            }
+        }
         
 
             // create web page with table and styles  table, tr, td, h1, p 
