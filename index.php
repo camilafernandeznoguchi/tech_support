@@ -1,4 +1,5 @@
-<?php include 'view/header.php'; ?>
+<?php include 'view/headerIndex.php'; ?>
+
 <main>
     <nav>
         

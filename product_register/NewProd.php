@@ -35,7 +35,6 @@ try {
     $customerID = $_SESSION['customerID'];
     $prod_code = array_values($line)[0];
     $date = date("Y-m-d h:i:s");
-    echo $date;
    	$register_query = "INSERT INTO registrations VALUES ('$customerID', '$prod_code', '$date')";
    	if (mysqli_query($con, $register_query)) {
       #echo "Record added successfully";
