@@ -103,13 +103,24 @@ $_SESSION["customer_id"] = $customer_ID;
 			<?php $code = $full[$countrycode]; ?>
 			<tr><td>
 			Country Code:  </td><td>
+			<?php
+			echo "<select name='productslist[]'>";
+			foreach ($arrayCountries as $country) {
+				echo "<option value='$country'>";
+				echo $country;
+				echo "</option>";
+			}
+			echo "<option value='default' selected> $code </option>";
+			echo "</select>";
+			?>
+			<!--
 			<input list="browsers" name="browser" id="browser" value=<?php echo "'$code'"?>>
 			<datalist id="browsers">
-			<?php foreach ($arrayCountries as $country) {
+			<?php /*foreach ($arrayCountries as $country) {
 					echo "<option value='" . $country . "'>";
 					echo $country;
-				} ?>
-			</datalist></td></tr>
+				}*/ ?>
+			</datalist>--></td></tr>
 			<tr><td>
 			Phone:  </td><td><input type="text" name="phone" value=<?php echo "'$phone'"?>><br>
 			</td></tr>

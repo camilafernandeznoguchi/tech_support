@@ -17,6 +17,7 @@ session_start();
 		$state = $_POST["state"];
 		$postalcode = $_POST["postalCode"];
 		$countrycode = $_POST["countryCode"];
+		echo $countrycode;
 		$phone = $_POST["phone"];
 		$email = $_POST["email"];
 		$password = $_POST["password"];
