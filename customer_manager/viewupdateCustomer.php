@@ -83,22 +83,22 @@ $_SESSION["customer_id"] = $customer_ID;
 	<col style="width:25%">
 		<tr><td>
 		<form action="update_.php" method="post">
-			First Name:  </td><td><input type="text" name="first" value=<?php echo "'$first_name'"?>><br>
+			First Name:  </td><td><input type="text" name="first" required="required" min="1" max="50" value=<?php echo "'$first_name'"?>><br>
 			</td></tr>
 			<tr><td>
-			Last Name: </td><td><input type="text" name="last" value=<?php echo "'$last_name'"?>><br>
+			Last Name: </td><td><input type="text" name="last" required="required" min="1" max="50" value=<?php echo "'$last_name'"?>><br>
 			</td></tr>
 			<tr><td>
-			Address:  </td><td><input size="50" type="text" name="address" value=<?php echo "'$address'"?>><br>
+			Address:  </td><td><input size="50" type="text" name="address" required="required" min="1" max="50" value=<?php echo "'$address'"?>><br>
 			</td></tr>
 			<tr><td>
-			City:  </td><td><input type="text" name="city" value=<?php echo "'$city'"?>><br>
+			City:  </td><td><input type="text" name="city" required="required" min="1" max="50" value=<?php echo "'$city'"?>><br>
 			</td></tr>
 			<tr><td>
-			State:  </td><td><input type="text" name="state" value=<?php echo "'$state'"?>><br>
+			State:  </td><td><input type="text" name="state" required="required" min="1" max="50" value=<?php echo "'$state'"?>><br>
 			</td></tr>
 			<tr><td>
-			Postal Code:  </td><td><input type="text" name="postal" value=<?php echo "'$postalcode'"?>><br>
+			Postal Code:  </td><td><input type="text" name="postal" required="required" min="1" max="20" value=<?php echo "'$postalcode'"?>><br>
 			</td></tr>
 			<?php $code = $full[$countrycode]; ?>
 			<tr><td>
@@ -122,13 +122,13 @@ $_SESSION["customer_id"] = $customer_ID;
 				}*/ ?>
 			</datalist>--></td></tr>
 			<tr><td>
-			Phone:  </td><td><input type="text" name="phone" value=<?php echo "'$phone'"?>><br>
+			Phone:  </td><td><input type="text" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value=<?php echo "'$phone'"?>><br>
 			</td></tr>
 			<tr><td>
-			Email:  </td><td><input size="50" type="text" name="email" value=<?php echo "'$email'"?>><br>
+			Email:  </td><td><input size="50" type="email" min="1" max="50" name="email" required="required" value=<?php echo "'$email'"?>><br>
 			</td></tr>
 			<tr><td>
-			Password:  </td><td><input type="text" name="password" value=<?php echo "'$password'"?>><br>
+			Password:  </td><td><input type="text" name="password" min="6" max="20" value=<?php echo "'$password'"?>><br>
 			</td></tr>
 			<td> </td><td><input type="submit" value="Update Customer"></td>
 
