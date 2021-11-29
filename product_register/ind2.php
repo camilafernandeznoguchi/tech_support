@@ -9,12 +9,14 @@ session_set_cookie_params(0);
 session_start();
 
 if (isset($_SESSION['email'])) { 
-    // redirect to process form. php
-    header("Location: /tech_support/product_register/ProcessForm2.php");
-    exit;
+    // destroy past session
+    session_destroy();
 }
 
-else {
+// start new session
+session_start();
+
+
     echo '
     <!DOCTYPE html>
     <html>
@@ -43,8 +45,8 @@ else {
     </body>
         
     </html>
-    '; 
-}
+    ';
+    
 
 ?>
 

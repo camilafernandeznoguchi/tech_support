@@ -1,6 +1,8 @@
 <!--Produced by: Gabriela Hernandez-->
 
 <?php 
+
+session_set_cookie_params(0);
 session_start();
 
 require('../view/header.php');
