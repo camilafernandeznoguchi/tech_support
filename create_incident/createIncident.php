@@ -30,7 +30,7 @@ try{
     // if more than 1 person with same email, redirect to error page and try again
     $rows = mysqli_num_rows($email_result);
     if ($rows < 1)
-        header("Location: ../errors/error.php?message=Email not found");
+        header("Location: ../errors/database_error.php?error=Email not found");
 
     //concatenate row to get full name
     $row = mysqli_fetch_array($email_result, MYSQLI_NUM);
@@ -54,8 +54,12 @@ try{
     global $products;
 
 } catch (Exception $e) {
-    $message = "Error: " . $e->getMessage() . "<br>Line " . $e->getLine();
-    header("Location: ../errors/error.php?message=$message");
+    $error_message = $e->getMessage() . "<br>Line" . $e->getLine();
+        echo "<form action='../errors/database_error.php' method='post'>";
+        echo "<input type='hidden' name='error' value=\"".$error_message."\" >";
+        echo "</form>";
+        header("Location: ../errors/database_error.php?error=".$error_message);
+    
 } finally {
     // close connection
     mysqli_close($con);

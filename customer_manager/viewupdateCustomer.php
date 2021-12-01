@@ -12,6 +12,8 @@ function test_input($data) {
     return $data;
 }
 
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    error_reporting(0);
 
 try {
 	# Conect to database
@@ -27,7 +29,7 @@ try {
     $result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
 
 	$queryCountry = "SELECT * FROM countries;";
-	$resultCountry = mysqli_query($con, $queryCountry) or die('Query failed: ' . mysqli_errno($con));
+	$resultCountry = mysqli_query($con, $queryCountry)or die('Query failed: ' . mysqli_errno($con));
 
 	$arrayCountries = array();
 	$count = 3;
@@ -69,7 +71,13 @@ try {
 	}
 }
 catch (Exception $e) {
-	echo "Error: " . $e->getMessage() . "<br>Line" . $e->getLine();
+	//echo "Error: " . $e->getMessage() . "<br>Line" . $e->getLine();
+	$error_message = $e->getMessage() . "<br>Line" . $e->getLine();
+        echo "<form action='../errors/database_error.php' method='post'>";
+        echo "<input type='hidden' name='error' value=\"".$error_message."\" >";
+        echo "</form>";
+        //echo "Message: " . $e->getMessage() . "<br>Line" . $e->getLine();
+        header("Location: ../errors/database_error.php?error=".$error_message);
 } finally {
 	mysqli_close($con);
 }

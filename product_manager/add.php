@@ -19,7 +19,7 @@
             exit("Connect Error");
         }
 
-        $query = "INSERT INTO PRODUCTS VALUES ('$code', '$name', $version, '$release')";
+        $query = "INSERT INTO PRODCTS VALUES ('$code', '$name', $version, '$release')";
 
     	if (mysqli_query($con, $query)) {
           #echo "Record added successfully";
@@ -30,9 +30,14 @@
         }
 
 	} catch (Exception $e) {
-		header("Refresh:5; url=addProduct.php");
-		echo "Error: " . $e->getMessage() . "<br>Line " . $e->getLine();
-		echo "<br> You will be redirected in 5 seconds...";
+		//header("Refresh:5; url=addProduct.php");
+		//echo "Error: " . $e->getMessage() . "<br>Line " . $e->getLine();
+		//echo "<br> You will be redirected in 5 seconds...";
+		$error_message = $e->getMessage() . "<br>Line" . $e->getLine();
+        echo "<form action='../errors/database_error.php' method='post'>";
+        echo "<input type='hidden' name='error' value=\"".$error_message."\" >";
+        echo "</form>";
+        header("Location: ../errors/database_error.php?error=".$error_message);
 	} finally {
 		// close connection
     	mysqli_close($con);

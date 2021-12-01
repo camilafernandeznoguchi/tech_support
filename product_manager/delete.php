@@ -28,7 +28,11 @@
     }
   }
   catch(Exception $e){
-    echo "Error: " . $e->getMessage() . "<br>Line " . $e->getLine();
+    $error_message = $e->getMessage() . "<br>Line" . $e->getLine();
+    echo "<form action='../errors/database_error.php' method='post'>";
+    echo "<input type='hidden' name='error' value=\"".$error_message."\" >";
+    echo "</form>";
+    header("Location: ../errors/database_error.php?error=".$error_message);
   } finally{
     mysqli_close($con);
   }
