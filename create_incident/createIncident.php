@@ -20,6 +20,10 @@ try{
         echo "Failed to connect to MySQL: " . mysqli_connect_error() . "<br>";
         exit("Connect Error");
     }
+    
+    // test for HTML characters to avoid HTML Injection
+    require ("TestInput.php");
+    $email = test_input($email);
 
     //prepare SQL query to validate email
     $email_query = mysqli_prepare($con, "SELECT firstName, lastName, customerID FROM customers WHERE email = ?");

@@ -21,6 +21,11 @@
             exit("Connect Error");
         }
 
+        // test for HTML characters to avoid HTML Injection
+        require ("TestInput.php");
+        $title = test_input($title);
+        $description = test_input($description);
+
         $stmt = $con->prepare("INSERT INTO incidents (customerID, productCode, dateOpened, title, description) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param("issss", $customerID, $productCode, $dateOpened, $title, $description);
         $stmt->execute();
