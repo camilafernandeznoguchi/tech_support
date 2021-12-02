@@ -9,6 +9,7 @@ session_start();
     
 
     // allow MySQLi error reporting and Exception handling
+    error_reporting(0);
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
     try {
@@ -27,7 +28,7 @@ session_start();
 
         // if userid not in login table, redirect to error page and try again
         if ($rows < 1)
-            header("Location: error.php?message='user not found'");
+            header("Location: ../errors/database_error.php?message='user not found'");
         
         // QUERY #2 : Second query to get product names
         $query2 = "SELECT name FROM products";
@@ -36,7 +37,7 @@ session_start();
         $rows2 = mysqli_num_rows($result2);
             
         if ($rows2 < 1)
-            header("Location: error.php?message='user not found'");
+            header("Location: ../errors/database_error.php?message='user not found'");
 
         //Get customerID for registering
         $customerID_query = "SELECT customerID FROM customers WHERE email='$name'";
@@ -126,9 +127,12 @@ session_start();
     } 
     
     catch (Exception $e) {
-        $message = $e->getMessage();
-        $code = $e->getCode();
-        header("Location: error.php?code=$code&message=$message");
+        //$message = $e->getMessage();
+        //$code = $e->getCode();
+        //header("Location: error.php?code=$code&message=$message");
+
+        $error_message = $e->getMessage() . "<br>Line" . $e->getLine();
+        header("Location: ../errors/database_error.php?error=".$error_message);
     } 
     
     finally{

@@ -2,6 +2,7 @@
 
 <?php 
 
+error_reporting(0);
 session_set_cookie_params(0);
 session_start();
 
@@ -47,7 +48,9 @@ try {
 	
 }
 catch (Exception $e) {
-	echo "Error: " . $e->getMessage() . "<br>Line" . $e->getLine();
+	//echo "Error: " . $e->getMessage() . "<br>Line" . $e->getLine();
+	$error_message = $e->getMessage() . "<br>Line" . $e->getLine();
+    header("Location: ../errors/database_error.php?error=".$error_message);
 } finally {
 	mysqli_close($con);
 }
