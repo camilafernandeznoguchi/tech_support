@@ -59,7 +59,7 @@ if (! empty($_POST['name']) ) {
         }
         
 
-        // create web page with table and styles  table, tr, td, h1, p 
+        // create web page with table and styles  table, tr, td, h1, p
         echo "<html>
         <head>
         <style>
@@ -75,13 +75,13 @@ if (! empty($_POST['name']) ) {
         </head>
         <body>
         <h1 class='class1'>Register Product</h1>
-
+            
         <table class='class1'>";
         
         // Row 1: Customer name
         
         echo "<tr class='class1'>";
-
+        
         // loop over result set. Print a table row for each record
         while ($line = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             echo "<td class='class1'>"."Customer:"."  "."</td>";
@@ -99,38 +99,44 @@ if (! empty($_POST['name']) ) {
         
         echo "<tr class='class1'>";
         
-        echo "<td style='border:none;';>"."Product:"."  "."</td>"; 
-                    
+        echo "<td style='border:none;';>"."Product:"."  "."</td>";
+        
         echo "<td class='class1'>";
         
-        echo "<form action='NewProd.php' method='post'>"; 
+        echo "<form action='NewProd.php' method='post'>";
         echo "<select name='productslist[]'>";
         
-            while ($line2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {      
-                foreach ($line2 as $col_value) {
-                    echo "<option value='$col_value'>";   
-                    echo "$col_value";
-                    echo "</option>";
-                }
+        while ($line2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
+            foreach ($line2 as $col_value) {
+                echo "<option value='$col_value'>";
+                echo "$col_value";
+                echo "</option>";
             }
-            
-            echo "<option value='default' selected> Default </option>";
-            
-        echo "</select>";
-        echo "<td>";
+        }
         
+        echo "<option value='default' selected> Default </option>";
+        
+        echo "</select>";
+        echo "</td>";
+        
+        echo "<td>";
         echo "<input type='submit' name='submit' value='Submit' />";
         echo "</td>";
-        echo "</form>";
         
-        echo "</td>";
+        echo "</form>";
         echo "</tr>";
         
         echo "</table>";
         
+        echo "<p class='class1'>";
         echo "You are logged in as ". $_SESSION['email'];
+        echo "</p>";
         
-        echo "</body></html>";        
+        echo "<form action='ind2.php' method='post'>";
+        echo "<button type='submit'>Logout</button>";
+        echo "</form>";
+        
+        echo "</body></html>";  
     } 
     
     catch (Exception $e) {

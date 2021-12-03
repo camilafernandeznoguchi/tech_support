@@ -9,7 +9,6 @@ session_start();
     
 
     // allow MySQLi error reporting and Exception handling
-    error_reporting(0);
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
     try {
@@ -28,7 +27,7 @@ session_start();
 
         // if userid not in login table, redirect to error page and try again
         if ($rows < 1)
-            header("Location: ../errors/database_error.php?message='user not found'");
+            header("Location: error.php?message='user not found'");
         
         // QUERY #2 : Second query to get product names
         $query2 = "SELECT name FROM products";
@@ -37,7 +36,7 @@ session_start();
         $rows2 = mysqli_num_rows($result2);
             
         if ($rows2 < 1)
-            header("Location: ../errors/database_error.php?message='user not found'");
+            header("Location: error.php?message='user not found'");
 
         //Get customerID for registering
         $customerID_query = "SELECT customerID FROM customers WHERE email='$name'";
@@ -107,32 +106,32 @@ session_start();
             echo "<option value='default' selected> Default </option>";
             
         echo "</select>";
-        echo "<td>";
+        echo "</td>";
         
+        echo "<td>";
         echo "<input type='submit' name='submit' value='Submit' />";
         echo "</td>";
+        
         echo "</form>";        
-        echo "</td>";
         echo "</tr>";
+
         echo "</table>";
         
+        echo "<p class='class1'>";
         echo "You are logged in as ". $_SESSION['email'];
-        
-        echo "</body></html>";   
+        echo "</p>";
         
         echo "<form action='ind2.php' method='post'>";
-        echo "<br>";
-        echo "<button type='submit'> Logout </button>";
+        echo "<button type='submit'>Logout</button>";
         echo "</form>";
+        
+        echo "</body></html>";   
     } 
     
     catch (Exception $e) {
-        //$message = $e->getMessage();
-        //$code = $e->getCode();
-        //header("Location: error.php?code=$code&message=$message");
-
-        $error_message = $e->getMessage() . "<br>Line" . $e->getLine();
-        header("Location: ../errors/database_error.php?error=".$error_message);
+        $message = $e->getMessage();
+        $code = $e->getCode();
+        header("Location: error.php?code=$code&message=$message");
     } 
     
     finally{
