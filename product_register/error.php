@@ -15,6 +15,8 @@ $message ="";
     
 ?>
 <a href="index.php">Try again</a>
+<!--  used to be just index.php -->
+
 
 </body></html>
 

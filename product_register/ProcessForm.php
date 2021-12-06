@@ -4,7 +4,7 @@
 
 <?php
 
-session_set_cookie_params(0);
+//session_set_cookie_params(0);
 session_start();
 
 // get values sent from browser and test that both are filled in.
@@ -103,7 +103,7 @@ if (! empty($_POST['name']) ) {
         
         echo "<td class='class1'>";
         
-        echo "<form action='NewProd.php' method='post'>";
+        echo "<form action='NewProd.php' method='post'>"; 
         echo "<select name='productslist[]'>";
         
         while ($line2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
@@ -132,6 +132,7 @@ if (! empty($_POST['name']) ) {
         echo "You are logged in as ". $_SESSION['email'];
         echo "</p>";
         
+        # used to be just ind2.php
         echo "<form action='ind2.php' method='post'>";
         echo "<button type='submit'>Logout</button>";
         echo "</form>";

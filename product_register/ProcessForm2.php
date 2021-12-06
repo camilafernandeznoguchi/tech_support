@@ -4,7 +4,7 @@
 
 <?php
 
-session_set_cookie_params(0);
+//session_set_cookie_params(0);
 session_start();
     
 
@@ -92,6 +92,7 @@ session_start();
                     
         echo "<td class='class1'>";
         
+        # used to be just newprod.php
         echo "<form action='NewProd.php' method='post'>"; 
         echo "<select name='productslist[]'>";
         
@@ -121,6 +122,7 @@ session_start();
         echo "You are logged in as ". $_SESSION['email'];
         echo "</p>";
         
+        #used to be just ind2.php
         echo "<form action='ind2.php' method='post'>";
         echo "<button type='submit'>Logout</button>";
         echo "</form>";

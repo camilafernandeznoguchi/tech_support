@@ -5,7 +5,7 @@
 <?php 
 
 // if session already has variables saved, redirect to processform.php page
-session_set_cookie_params(0);
+//session_set_cookie_params(0);
 session_start();
 
 if (isset($_SESSION['email'])) { 
@@ -47,6 +47,7 @@ session_start();
     </html>
     ';
     
+// used to be just processform.php
 
 ?>
 
