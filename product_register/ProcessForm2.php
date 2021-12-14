@@ -123,7 +123,9 @@ session_start();
         echo "</p>";
         
         #used to be just ind2.php
-        echo "<form action='ind2.php' method='post'>";
+        # echo "<form action='ind2.php' method='post'>";
+        echo '<form action="ind2.php" onsubmit="return confirm(\'Do you really want to logout?\');" method="post">';
+
         echo "<button type='submit'>Logout</button>";
         echo "</form>";
         
