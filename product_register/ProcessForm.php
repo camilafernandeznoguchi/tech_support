@@ -9,9 +9,10 @@ session_start();
 
 // get values sent from browser and test that both are filled in.
 // If not, redirect to error.php
-if (! empty($_POST['name']) ) {
+if (! empty($_POST['email']) ) {
     
-    $name = $_POST['name']; 
+    $name = $_POST['email']; 
+    $pass = $_POST['password'];
     
     // Turn off default error reporting 
    // error_reporting(0); 
@@ -30,15 +31,20 @@ if (! empty($_POST['name']) ) {
         // save variable $name in session to avoid future logins
         $_SESSION['email'] = $name;
 
+
         // QUERY #1 : First query to verify email exists
-        $query = "SELECT firstName, lastName FROM customers WHERE email='$name'";
+        $query = "SELECT firstName, lastName FROM customers WHERE email='$name' and password='$pass'" ;
         $result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
 
         $rows = mysqli_num_rows($result);
 
         // if userid not in login table, redirect to error page and try again
         if ($rows < 1)
-            header("Location: error.php?message='user not found'");
+            // echo $name;
+            // echo $pass;
+            // echo "try again 1";
+            header("Location: ind2.php");
+            //header("Location: error.php?message='user not found'");
         
         // QUERY #2 : Second query to get product names
         $query2 = "SELECT name FROM products";
@@ -47,7 +53,9 @@ if (! empty($_POST['name']) ) {
         $rows2 = mysqli_num_rows($result2);
             
         if ($rows2 < 1)
-            header("Location: error.php?message='user not found'");
+            header("Location: ind2.php");
+            //header("Location: ProcessForm.php");
+            //header("Location: error.php?message='user not found'");
 
         //Get customerID for registering
         $customerID_query = "SELECT customerID FROM customers WHERE email='$name'";
@@ -143,7 +151,9 @@ if (! empty($_POST['name']) ) {
     catch (Exception $e) {
         $message = $e->getMessage();
         $code = $e->getCode();
-        header("Location: error.php?code=$code&message=$message");
+        echo "try again 3";
+        //header("Location: ProcessForm.php");
+        //header("Location: error.php?code=$code&message=$message");
     } 
     
     finally{

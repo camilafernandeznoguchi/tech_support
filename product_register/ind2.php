@@ -37,7 +37,8 @@ session_start();
         <p>You must login before you register a product</p>
         <form action="ProcessForm.php" method="post">
         <table>
-            <tr><td>Email:</td><td> <input type="text" name="name"></td>
+            <tr><td>Email:</td><td> <input type="text" name="email"></td>
+            <tr><td>Password:</td><td> <input type="text" name="password"></td>
             <td colspan="2"><input type="submit" value="Login"></td></tr>
         </table>
         </form>
