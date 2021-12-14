@@ -1,7 +1,7 @@
 <?php require('../view/header.php');?>
 
 <main>
-    <!--Produced by: Camila Fernandez Noguchi-->
+    <!--Produced by: Camila Fernandez Noguchi and Gabriela Hernandez -->
 	<h1>Product List</h1>
 
 	<table>
@@ -44,13 +44,15 @@
                 echo "<td>", "$field_value", "</td>";
             }
 
-            #delete buttons
-            echo "<form action='delete.php' method='post'>";
+            #delete buttons    previous code: <form action='delete.php' method='post'>
+            echo '<form action="delete.php" onsubmit="return confirm(\'Do you really want to submit the form?\');" method="post">';
+           # echo "<form id='myform' action='delete.php' method='post'>";
             echo "<td> <button type='submit' name='deleteItem' value='" . $line['productCode'] . "' />Delete</button></td>";
             echo "</form>";
 
             # end table row and loop
             echo "</tr>";
+            
         }
     }
     catch (Exception $e) {
