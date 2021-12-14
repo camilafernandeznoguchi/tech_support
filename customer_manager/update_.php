@@ -26,6 +26,9 @@ $newPhone = $_POST["phone"];
 $newEmail = $_POST["email"];
 $newPassword = $_POST["password"];
 
+$add =$_SESSION["add"];
+
+
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     error_reporting(0);
 
@@ -38,7 +41,15 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
             echo "Failed to connect to MySQL: " . mysqli_connect_error() . "<br>";
             exit("Connect Error");
         }
-
+		
+		//add customer
+		if ($add==1){
+			echo "hey";
+		$query = "INSERT INTO customers (firstName, lastName, address, city, state, postalCode, countryCode, phone, email, password)
+		VALUES ('$newName', '$newLast', '$newAddress', '$newCity', '$newState', '$newPostal', '$newCode', '$newPhone', '$newEmail', '$newPassword')";
+		$result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
+		}
+		else {
 		//update first name
 		$query = "UPDATE customers SET firstName='$newName' where customerID='$id'";
 		$result = mysqli_query($con, $query) or die('Query failed: ' . mysqli_errno($con));
@@ -69,7 +80,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 		//update password
 		$query9 = "UPDATE customers SET password='$newPassword' where customerID='$id'";
 		$result9 = mysqli_query($con, $query9) or die('Query failed: ' . mysqli_errno($con));
-
+		}
 	}
     catch (Exception $e) {
         echo "Error: " . $e->getMessage() . "<br>Line" . $e->getLine();

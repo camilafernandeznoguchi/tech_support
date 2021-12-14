@@ -15,6 +15,8 @@ function test_input($data) {
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     error_reporting(0);
 
+$add = False;
+	
 try {
 	# Conect to database
 	require('../model/database.php');
@@ -69,6 +71,8 @@ try {
 		$email = $line["email"];
 		$password = $line["password"];
 	}
+	
+
 }
 catch (Exception $e) {
 	//echo "Error: " . $e->getMessage() . "<br>Line" . $e->getLine();
@@ -86,7 +90,7 @@ $_SESSION["customer_id"] = $customer_ID;
 ?>
 
 <main>
-	<h1>View/Update Customer</h1>
+	<h1>Add/Update Customer</h1>
 	<table>
 	<col style="width:25%">
 		<tr><td>
@@ -138,7 +142,16 @@ $_SESSION["customer_id"] = $customer_ID;
 			<tr><td>
 			Password:  </td><td><input type="text" name="password" min="6" max="20" value=<?php echo "'$password'"?>><br>
 			</td></tr>
-			<td> </td><td><input type="submit" value="Update Customer"></td>
+			<?php 
+			if (is_null($customer_ID)){
+				$label = "Add Customer";
+				$add = True;
+			}
+			else {
+				$label = "Update Customer";
+			}
+			?>	
+			<td> </td><td><input type="submit" value=<?php echo "'$label'"?>></td>
 
 	
 		</form>
@@ -155,10 +168,11 @@ $_SESSION["customer_id"] = $customer_ID;
 	</style>
 
 	<br>
-	<a href="index.php">Search Customers</a>
+	<a href="search.php">Search Customers</a>
 
 </main>
 
+<?php $_SESSION["add"] = $add; ?>
 
 <!-- <form method="post" action="update_.php">
 <input type="hidden" name="customer_id" 
