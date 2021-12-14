@@ -16,10 +16,10 @@
     <h2>Login Status</h2>
     <p>Your are logged in as admin</p>
 
-    <form action="index.php" method="post">
+    <form action="index.php" onsubmit="return confirm('Do you really want to logout?');" method="post">
     <input type="submit" value=Logout>
     </form >
     
     </nav>
-</section>
+</main>
 <?php include 'view/footer.php'; ?>
