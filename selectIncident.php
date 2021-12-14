@@ -13,9 +13,9 @@
     <h2>Select Incident</h2>
     <p>You are logged in as <?php echo $login_session; ?></p>
 
-    <form method="POST" action="logout.php">
-    <input type="submit" value="Logout" name="logout">
-	</form>
+	<form action="logout.php" onsubmit="return confirm('Do you really want to logout?');" method="post">
+    <input type="submit" value=Logout>
+    </form >
 
 	<br>
     
