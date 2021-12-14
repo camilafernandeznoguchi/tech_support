@@ -1,7 +1,7 @@
 <?php require('../view/header.php');?>
 
 <main>
-    <!--Produced by: Camila Fernandez Noguchi-->
+    <!--Produced by: Camila Fernandez Noguchi and Gabriela Hernandez-->
     <h1>Technician List</h1>
 
     <table>
@@ -50,7 +50,10 @@
             }
 
             #delete buttons
-            echo "<form action='delete.php' method='post'>";
+           # echo "<form action='delete.php' method='post'>";
+           
+            #adding some inline javascript to handle confirmation box
+            echo '<form action="delete.php" onsubmit="return confirm(\'Do you really want to submit the form?\');" method="post">';
             echo "<td> <button type='submit' name='deleteItem' value='" . $line['techID'] . "' />Delete</button></td>";
             echo "</form>";
 
