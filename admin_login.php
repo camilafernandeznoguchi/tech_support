@@ -11,7 +11,7 @@
 
     //grabs input and saves into variable
     if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $username = $_POST['admin_username'];
+        $user = $_POST['admin_username'];
         $password = $_POST['admin_password'];
 
         //connect to db
@@ -23,12 +23,15 @@
 
         // test for HTML characters to avoid HTML Injection
         require ("TestInput.php");
-        $username = test_input($username);
+        $user = test_input($user);
         $password = test_input($password);
+
+        echo $user;
+        echo $password;
 
         //prepare SQL query to validate email
         $query = mysqli_prepare($con, "SELECT * FROM administrators WHERE username=? AND password =?");
-        mysqli_stmt_bind_param($query, "ss", $username, $password);
+        mysqli_stmt_bind_param($query, "ss", $user, $password);
         mysqli_stmt_execute($query);
         $result = mysqli_stmt_get_result($query);
 
@@ -37,8 +40,8 @@
 
         if($rows == 1) {
           #session_register("email");
-          $_SESSION['login_user'] = $username;
-          header("location: selectIncident.php");
+          $_SESSION['login_user'] = $user;
+          header("location: admin_index.php");
         }else {
           $error = "Your Login Name or Password is invalid";
         }

@@ -20,15 +20,24 @@
             exit("Connect Error");
         }
         
-        $query = "INSERT INTO TECHNICIANS (firstName, lastName, email, phone, password) VALUES ('$name', '$lastName', '$email', '$phone', '$password')";
-        
-    	if (mysqli_query($con, $query)) {
-          #echo "Record added successfully";
-          header('Location: index.php');
-        }
-        else {
-          echo "Error adding record: " . mysqli_error($con);
-        }
+        #$query = "INSERT INTO TECHNICIANS (firstName, lastName, email, phone, password) VALUES ('$name', '$lastName', '$email', '$phone', '$password')";
+        $stmt = $con->prepare("INSERT INTO TECHNICIANS (firstName, lastName, email, phone, password) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $name, $lastName, $email, $phone, $password);
+
+        // test for HTML characters to avoid HTML Injection
+        require ("../TestInput.php");
+        $name = test_input($name);
+        $lastName = test_input($lastName);
+        $email = test_input($email);
+        $phone = test_input($phone);
+        $password = test_input($password);
+
+    	if ($stmt->execute()) { 
+		   header('Location: index.php');
+		} else {
+		   echo "Error adding record: " . mysqli_error($con);
+		}
+        $stmt->close();
         
 
 	} catch (Exception $e) {

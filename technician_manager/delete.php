@@ -15,9 +15,16 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = $_POST['deleteItem'];
-        $query = "DELETE FROM TECHNICIANS WHERE TECHID = '$id'";
 
-        if (mysqli_query($con, $query)) {
+        // test for HTML characters to avoid HTML Injection
+        require ("../TestInput.php");
+        $id = test_input($id);
+
+        $query = "DELETE FROM TECHNICIANS WHERE TECHID = '$id'";
+        $query = mysqli_prepare($con, "DELETE FROM TECHNICIANS WHERE TECHID = ?");
+        mysqli_stmt_bind_param($query, "i", $id);
+
+        if (mysqli_stmt_execute($query)) {
           #echo "Record deleted successfully";
           header('Location: index.php');
         }

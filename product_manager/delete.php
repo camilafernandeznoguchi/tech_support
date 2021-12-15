@@ -15,10 +15,17 @@
       }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $id = $_POST['deleteItem'];
-        $query = "DELETE FROM PRODUCTS WHERE PRODUCTCODE = '$id'";
 
-        if (mysqli_query($con, $query)) {
+        $id = $_POST['deleteItem'];
+
+        // test for HTML characters to avoid HTML Injection
+        require ("../TestInput.php");
+        $id = test_input($id);
+
+        $query = mysqli_prepare($con, "DELETE FROM PRODUCTS WHERE PRODUCTCODE = ?");
+        mysqli_stmt_bind_param($query, "s", $id);
+
+        if (mysqli_stmt_execute($query)) {
           #echo "Record deleted successfully";
           header('Location: index.php');
         }
